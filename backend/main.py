@@ -108,14 +108,14 @@ class BookCreate(BaseModel):
     author: str = Field(..., min_length=1, description="Book author")
     isbn: str = Field(..., min_length=1, description="ISBN (13 characters)")
     category: str = Field(..., min_length=1, description="Book category")
-    publisher: str = Field(default=None, max_length=100, description="Publisher")
-    published_year: int = Field(default=None, ge=1000, le=2100, description="Published year")
+    publisher: str | None = Field(default=None, max_length=100, description="Publisher")
+    published_year: int | None = Field(default=None, ge=1000, le=2100, description="Published year")
     total_copies: int = Field(..., gt=0, description="Total number of copies")
     available_copies: int | None = Field(
         default=None, ge=0,
         description="Available copies (defaults to total_copies)"
     )
-    description: str = Field(default=None, max_length=500, description="Book description")
+    description: str | None = Field(default=None, max_length=500, description="Book description")
 
     model_config = ConfigDict(extra="forbid")
 
@@ -128,18 +128,18 @@ class BookCreate(BaseModel):
 
 
 class BookUpdate(BaseModel):
-    title: str = Field(default=None, min_length=1, description="Book title")
-    author: str = Field(default=None, min_length=1, description="Book author")
-    isbn: str = Field(default=None, min_length=1, description="ISBN (13 characters)")
-    category: str = Field(default=None, min_length=1, description="Book category")
-    publisher: str = Field(default=None, max_length=100, description="Publisher")
-    published_year: int = Field(default=None, ge=1000, le=2100, description="Published year")
-    total_copies: int = Field(default=None, gt=0, description="Total number of copies")
-    available_copies: int = Field(
+    title: str | None = Field(default=None, min_length=1, description="Book title")
+    author: str | None = Field(default=None, min_length=1, description="Book author")
+    isbn: str | None = Field(default=None, min_length=1, description="ISBN (13 characters)")
+    category: str | None = Field(default=None, min_length=1, description="Book category")
+    publisher: str | None = Field(default=None, max_length=100, description="Publisher")
+    published_year: int | None = Field(default=None, ge=1000, le=2100, description="Published year")
+    total_copies: int | None = Field(default=None, gt=0, description="Total number of copies")
+    available_copies: int | None = Field(
         default=None, ge=0,
         description="Available copies"
     )
-    description: str = Field(default=None, max_length=500, description="Book description")
+    description: str | None = Field(default=None, max_length=500, description="Book description")
 
 
 class BookResponse(BaseModel):
@@ -148,11 +148,11 @@ class BookResponse(BaseModel):
     author: str
     isbn: str
     category: str
-    publisher: str = ""
-    published_year: int = 0
+    publisher: str | None = None
+    published_year: int | None = None
     total_copies: int
     available_copies: int
-    description: str = ""
+    description: str | None = None
     created_at: datetime | None = None
 
     model_config = ConfigDict(from_attributes=True)

@@ -6,11 +6,11 @@ export interface Book {
   author: string
   isbn: string
   category: string
-  publisher: string
-  published_year: number
+  publisher: string | null
+  published_year: number | null
   total_copies: number
   available_copies: number
-  description: string
+  description: string | null
   created_at: string
 }
 

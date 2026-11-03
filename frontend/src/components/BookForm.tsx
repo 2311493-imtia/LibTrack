@@ -30,11 +30,11 @@ export default function BookForm({ book, onDone }: Props) {
           author: book.author,
           isbn: book.isbn,
           category: book.category,
-          publisher: book.publisher,
+          publisher: book.publisher ?? "",
           published_year: book.published_year ? String(book.published_year) : "",
           total_copies: String(book.total_copies),
           available_copies: String(book.available_copies),
-          description: book.description,
+          description: book.description ?? "",
         }
       : emptyForm,
   )
